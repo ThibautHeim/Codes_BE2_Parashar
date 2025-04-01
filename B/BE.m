@@ -20,8 +20,8 @@ transformedSimpson = imwarp(simpson, tform);
 figure; imshow(transformedSimpson);
 
 s = size(transformedSimpson)
-mask = cast(transformedSimpson ~= 0, "uint8");
-bus(209:209 + s(1) - 1, 583:583 + s(2) - 1, :) = bus(209:209 + s(1) - 1, 583:583 + s(2) - 1, :) .* (1 - mask);
+mask = cast(transformedSimpson == 0, "uint8");
+bus(209:209 + s(1) - 1, 583:583 + s(2) - 1, :) = bus(209:209 + s(1) - 1, 583:583 + s(2) - 1, :) .* mask;
 figure; imshow(bus);
 bus(209:209 + s(1) - 1, 583:583 + s(2) - 1, :) = bus(209:209 + s(1) - 1, 583:583 + s(2) - 1, :) + transformedSimpson;
 figure; imshow(bus);
